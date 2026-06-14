@@ -2,15 +2,17 @@
 Detector de distancias para ciegos
 
 #Componentes sugeridos:
-* Esp32 c3 super mini
-* Servo sg90
-* HC-SR04
-* regulador step-down a 5V ej: mini560 o mp1584, etc
-* 2 baterías 18650
-* portabaterías 2s 18650
-* cargador-regulador de baterías 2s para 18650
-* 2 resistencias para divisor de tensión para pin echo del HC-SR04
-* 1 pulsador 
+*ESP32-C3 Super Mini
+*Sensor ultrasónico HC-SR04
+*Microservo SG90
+*Regulador Step-Down 5 V (Mini560, MP1584 o similar)
+*2 baterías 18650
+*Portabaterías 2S para 18650
+*Módulo cargador/protector para baterías 18650 en configuración 2S
+*2 resistencias para divisor de tensión en la señal ECHO del HC-SR04 (adaptación a 3,3 V del ESP32)
+*1 pulsador
+*Carcasa impresa en 3D
+*Tapita giratoria solidaria al eje del servo con indicador táctil
 
 #Funcionamiento
 
