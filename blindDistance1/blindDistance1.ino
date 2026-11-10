@@ -157,7 +157,7 @@ void loop()
   if(!digitalRead(buttonDownPin) || !digitalRead(buttonUpPin)){
    
         
-
+    triggerSoundLight();
 
     //Promedio de distancias
     
@@ -193,7 +193,7 @@ void loop()
         medDistance=0;
         counter=0;
         N=0;
-        triggerSoundLight();
+
 
       }
     
