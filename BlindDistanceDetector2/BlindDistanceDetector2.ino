@@ -36,7 +36,7 @@
 
 const unsigned int minimumTime = 15;//ms
 const unsigned int maxSoundLightONWaitingTime = 2000;//ms
-const unsigned int lightSoundONTimeFactor = 1;
+const unsigned int lightSoundONTimeFactor = 2;
 const unsigned int ONTime = 100; //ms
 
 
@@ -155,7 +155,7 @@ void triggerSoundLight(){
 
    if(soundLightState==1 && currentTime>soundLightOffTime ){
       soundLightState=0;
-        soundLightOnTime=minimumTime+oldDistance*lightSoundONTimeFactor;
+        soundLightOnTime=minimumTime+oldDistance/lightSoundONTimeFactor;
         if(soundLightOnTime>maxSoundLightONWaitingTime) soundLightOnTime=maxSoundLightONWaitingTime;
         soundLightOnTime+=currentTime;
       digitalWrite(lightPin,LOW);
@@ -298,7 +298,7 @@ void loop()
   if (!activation && (currentDistance < oldDistance-offSetDistanceActivation || currentDistance > oldDistance+offSetDistanceActivation)){
     activation=1;
     //refresh light/sound triggering
-     soundLightOnTime += (long)(currentDistance-oldDistance) * lightSoundONTimeFactor;
+     soundLightOnTime += (long)(currentDistance-oldDistance) / lightSoundONTimeFactor;
     oldDistance=currentDistance;
    
   }
@@ -318,11 +318,14 @@ void loop()
 
       
         // from 0 a 500 mm servo goes from 180 to 90 degrees
-        positionObjective=(map(currentDistance,0,500,2500,1501));
+        positionObjective=(map(currentDistance,0,500,2500,2250));
         
-      } else {
+      } else if(currentDistance <=1200) {
         // from 501 a 3000 mm servo goes from 90 to 0 degrees
-        positionObjective=(map(currentDistance,501,3000,1500,500));
+        positionObjective=(map(currentDistance,501,1200,2250,1500));
+      }else {
+        // from 501 a 3000 mm servo goes from 90 to 0 degrees
+        positionObjective=(map(currentDistance,1201,3000,1500,500));
       }
       autoOff=2000;
 
