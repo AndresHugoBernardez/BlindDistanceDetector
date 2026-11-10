@@ -29,15 +29,15 @@
 #define SCLpin 9
 
 //
-#define offSetDistanceActivation 70
-#define offSetDistanceDeactivation 30
+#define offSetDistanceActivation 30
+#define offSetDistanceDeactivation 10
 
 //Constants
 
 const unsigned int minimumTime = 15;//ms
-const unsigned int maxSoundLightONWaitingTime = 1700;//ms
-const unsigned int lightONTimeFactor = 10;
-const unsigned int ONTime = 150; //ms
+const unsigned int maxSoundLightONWaitingTime = 2000;//ms
+const unsigned int lightSoundONTimeFactor = 1;
+const unsigned int ONTime = 100; //ms
 
 
 
@@ -151,10 +151,11 @@ long readUltrasonicDistance(int trigger, int echo)
 
 
 void triggerSoundLight(){
+  
 
-   if(soundLightState==1 && currentTime>soundLightOffTime){
+   if(soundLightState==1 && currentTime>soundLightOffTime ){
       soundLightState=0;
-        soundLightOnTime=minimumTime+oldDistance*lightONTimeFactor;
+        soundLightOnTime=minimumTime+oldDistance*lightSoundONTimeFactor;
         if(soundLightOnTime>maxSoundLightONWaitingTime) soundLightOnTime=maxSoundLightONWaitingTime;
         soundLightOnTime+=currentTime;
       digitalWrite(lightPin,LOW);
@@ -225,11 +226,15 @@ void loop()
     currentTime= millis();
 
 
+
+     triggerSoundLight();
+
+
     if(currentTime>medTime){
 
-      medTime=currentTime+30;
+      medTime=currentTime+15;
       
-      if (counter < 8 ) {
+      if (counter < 4 ) {
         counter++;
         
         distanceHCSR04 = constrain( (unsigned long )(0.1723 * readUltrasonicDistance(triggerPin,echoPin)),0UL,5000UL) ;//mm
@@ -278,7 +283,7 @@ void loop()
         counter=0;
         N=0;
         M=0;
-        triggerSoundLight();
+       
 
       }
     
@@ -292,7 +297,10 @@ void loop()
 
   if (!activation && (currentDistance < oldDistance-offSetDistanceActivation || currentDistance > oldDistance+offSetDistanceActivation)){
     activation=1;
+    //refresh light/sound triggering
+     soundLightOnTime += (long)(currentDistance-oldDistance) * lightSoundONTimeFactor;
     oldDistance=currentDistance;
+   
   }
   
   else if (activation && currentDistance > oldDistance-offSetDistanceDeactivation && currentDistance < oldDistance+offSetDistanceDeactivation){
@@ -332,6 +340,11 @@ void loop()
         }
 
          gotoObjective();
+         if(autoOff==1750){
+                  
+            Serial.print("Distance:");
+            Serial.println(currentDistance);
+         }
       }
       else{
         if(servoWheel.attached())servoWheel.detach();
