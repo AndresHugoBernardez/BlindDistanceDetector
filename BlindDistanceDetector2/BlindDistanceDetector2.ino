@@ -298,7 +298,15 @@ void loop()
   if (!activation && (currentDistance < oldDistance-offSetDistanceActivation || currentDistance > oldDistance+offSetDistanceActivation)){
     activation=1;
     //refresh light/sound triggering
-     soundLightOnTime += (long)(currentDistance-oldDistance) / lightSoundONTimeFactor;
+    long correction = (currentDistance-oldDistance) /
+                  (long)lightSoundONTimeFactor;
+
+if(correction < 0)
+    soundLightOnTime -= (unsigned long)(-correction);
+else
+    soundLightOnTime += (unsigned long)correction;
+
+    
     oldDistance=currentDistance;
    
   }
