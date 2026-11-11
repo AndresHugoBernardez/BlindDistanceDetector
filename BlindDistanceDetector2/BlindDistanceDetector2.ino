@@ -325,15 +325,15 @@ else
       if (currentDistance <= 500) {
 
       
-        // from 0 a 500 mm servo goes from 180 to 90 degrees
-        positionObjective=(map(currentDistance,0,500,2500,2250));
+        // from 0 a 500 mm servo goes from 180 to 140 degrees (60 degrees)
+        positionObjective=(map(currentDistance,0,500,2500,1833));
         
       } else if(currentDistance <=1200) {
-        // from 501 a 3000 mm servo goes from 90 to 0 degrees
-        positionObjective=(map(currentDistance,501,1200,2250,1500));
+        // from 501 a 1500 mm servo goes from 140 to 30 degrees (90 degrees)
+        positionObjective=(map(currentDistance,501,1200,1834,833));
       }else {
-        // from 501 a 3000 mm servo goes from 90 to 0 degrees
-        positionObjective=(map(currentDistance,1201,3000,1500,500));
+        // from 1500 a 3000 mm servo goes from 30 to 0 degrees (30 degrees)
+        positionObjective=(map(currentDistance,1201,3000,834,500));
       }
       autoOff=2000;
 
