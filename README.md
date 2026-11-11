@@ -1,31 +1,41 @@
-# BlindDistanceDetector 
-Detector de distancias para ciegos
+# BlindDistanceDetector
 
-## Componentes sugeridos:
-* ESP32-C3 Super Mini
-* Sensor ultrasónico HC-SR04
-* Microservo SG90
-* Regulador Step-Down 5 V (Mini560, MP1584 o similar)
-* 2 baterías 18650
-* Portabaterías 2S para 18650
-* Módulo cargador/protector para baterías 18650 en configuración 2S
-* 2 resistencias para divisor de tensión en la señal ECHO del HC-SR04 (adaptación a 3,3 V del ESP32)
-* 1 pulsador
-* Carcasa impresa en 3D
-* Tapita giratoria solidaria al eje del servo con indicador táctil
-- Version 2: VL53L0X
+**Distance Detector for the Blind**
 
-#Funcionamiento
+## Suggested Components:
 
-Al presionar el botón se mide la distancia 5 veces y a la menor distancia la transforma de la siguiente forma:
-* Si es menor a 50cm marca de 180 para 0 y 90 para 50cm
-* Si es mayor a 50cm marca de 90 para 50cm y 0 para 200cm o más.
+- ESP32-C3 Super Mini
+- HC-SR04 Ultrasonic Sensor
+- SG90 Micro Servo
+- 5 V Step-Down Voltage Regulator (Mini560, MP1584, or similar)
+- 2 × 18650 Batteries
+- 2S Battery Holder for 18650 Batteries
+- Charger/Protection Module for 2S 18650 Battery Configuration
+- 2 Resistors for a voltage divider on the HC-SR04 ECHO signal (to adapt the voltage to the ESP32's 3.3 V logic level)
+- 1 Push Button
+- 3D-Printed Enclosure
+- Rotating Cap attached to the servo shaft, featuring a tactile indicator
 
-### YouTube: 
-* Version 1 https://youtu.be/0mqLhk4pwrI
-* Version 2 https://www.youtube.com/watch?v=io_nqs0bMak
+* Version 2: VL53L0X
 
+## How It Works
 
-### Tinkercad: 
+When the button is pressed, the device measures the distance five times and uses the shortest measured distance to calculate the corresponding servo position as follows:
+
+### Version 1:
+- **For distances below 50 cm:** The servo moves from 180° (0 cm) to 90° (50 cm).
+- **For distances above 50 cm:** The servo moves from 90° (50 cm) to 0° (200 cm or more).
+### Version 2:
+- **For distances below 50 cm:** The servo moves from 180° (0 cm) to 140° (50 cm).
+-  **For distances between 50 cm to 150cm:** The servo moves from 140° (50 cm) to 30° (150 cm).
+- **For distances above 150 cm:** The servo moves from 30° (150 cm) to 0° (300 cm or more).
+
+### YouTube
+
+- Version 1: https://youtu.be/0mqLhk4pwrI
+- Version 2: https://www.youtube.com/watch?v=io_nqs0bMak
+
+### Tinkercad
+
 https://www.tinkercad.com/things/elehajj8ofC-detector-de-distancias-para-ciegos
 
