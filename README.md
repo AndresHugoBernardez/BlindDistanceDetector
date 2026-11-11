@@ -20,7 +20,11 @@ Al presionar el botón se mide la distancia 5 veces y a la menor distancia la tr
 * Si es menor a 50cm marca de 180 para 0 y 90 para 50cm
 * Si es mayor a 50cm marca de 90 para 50cm y 0 para 200cm o más.
 
-YouTube: https://youtu.be/0mqLhk4pwrI
+### YouTube: 
+* Version 1 https://youtu.be/0mqLhk4pwrI
+* Version 2 https://www.youtube.com/watch?v=io_nqs0bMak
 
-Tinkercad: https://www.tinkercad.com/things/elehajj8ofC-detector-de-distancias-para-ciegos
+
+### Tinkercad: 
+https://www.tinkercad.com/things/elehajj8ofC-detector-de-distancias-para-ciegos
 
